@@ -1,0 +1,14 @@
+#!/bin/sh
+NAME=ci
+trap "virsh destroy $NAME ; virsh undefine $NAME; rm -f $NAME" 2
+mkdir tmp
+cp $NAME.cfg tmp/preseed.cfg
+virt-install --noreboot --connect=qemu:///system \
+  -n $NAME -r 128 \
+  --video=vga \
+  --disk path=$NAME,bus=scsi,size=1\
+  -l squeeze/installer-amd64 \
+  --initrd-inject tmp/preseed.cfg \
+  -x "hostname=$NAME domain= \
+      hw-detect/start_pcmcia=false DEBCONF_DEBUG=5 -- quiet"
+
