@@ -1,0 +1,9 @@
+#!/bin/sh
+release=squeeze
+dir=$release/installer-amd64/current/images/netboot
+mkdir -p $dir
+cd $dir
+wget http://ftp.uk.debian.org/debian/dists/$release/main/installer-amd64/current/images/netboot/netboot.tar.gz
+tar zxf netboot.tar.gz
+cd -
+echo netboot/debian-installer > $release/installer-amd64/current/images/MANIFEST
