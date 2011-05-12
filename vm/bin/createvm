@@ -1,6 +1,4 @@
 #!/bin/sh -e
-#wget -N http://ftp.uk.debian.org/debian/dists/squeeze/main/installer-amd64/current/images/netboot/mini.iso
-#wget -N http://ftp.uk.debian.org/debian/dists/squeeze/main/installer-amd64/current/images/netboot/netboot.tar.gz
 
 config() {
   for d in vboxmanage VBoxManage ; do

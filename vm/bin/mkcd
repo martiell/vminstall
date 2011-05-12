@@ -1,0 +1,10 @@
+#!/bin/sh
+CACHE=cache
+TMP=cd
+rm -rf $TMP
+mkdir $TMP
+cp isolinux.* $TMP
+cp $CACHE/linux $CACHE/initrd.gz $TMP
+echo preseed.cfg | cpio -Hnewc -o --quiet |gzip -c >> $TMP/initrd.gz
+mkisofs -o cd.iso -b isolinux.bin -c boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table $TMP
+rm -rf $TMP

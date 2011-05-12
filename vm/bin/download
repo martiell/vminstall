@@ -1,0 +1,12 @@
+#!/bin/sh
+
+CACHE=cache
+MIRROR=http://ftp.uk.debian.org/debian
+ARCH=amd64
+BASE=$MIRROR/dists/squeeze/main/installer-$ARCH/current/images/netboot/debian-installer/$ARCH
+FETCH="wget -N"
+
+mkdir -p $CACHE
+cd $CACHE
+$FETCH $BASE/linux
+$FETCH $BASE/initrd.gz
